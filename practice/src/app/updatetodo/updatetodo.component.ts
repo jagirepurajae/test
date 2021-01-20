@@ -20,15 +20,15 @@ export class UpdatetodoComponent implements OnInit {
     this.id = this.activeRoute.snapshot.params['id'];
     if(this.id!=-1){
     this.todo=new ToDo(this.id,'',false,new Date());
-    this.getAllTodoService.getToDoById(this.id).subscribe(data => this.todo = data);
+    this.getAllTodoService.getToDoById(this.id).subscribe(response => this.todo = response);
     }
   }
   saveTODo() {
-    if(this.id===-1){
-      this.getAllTodoService.addToDo(this.todo).subscribe(data=>{console.log('added successfully')
+    if(this.id==-1){
+      this.getAllTodoService.addToDo(this.todo).subscribe(response=>{console.log('added successfully')
     this.router.navigate(['todos'])});
     }else{
-      this.getAllTodoService.updateToDo(this.todo).subscribe(data => this.router.navigate(['todos']));
+      this.getAllTodoService.updateToDo(this.todo).subscribe(response => this.router.navigate(['todos']));
     }
   
   }

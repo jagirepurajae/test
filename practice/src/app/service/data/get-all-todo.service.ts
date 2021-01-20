@@ -10,7 +10,7 @@ export class GetAllTodoService {
   constructor(private http: HttpClient) { }
 
   getAllToDo() {
-    return this.http.get<ToDo[]>('http://localhost:8080/HellowWorldController/getAllToDos');
+    return this.http.get<ToDo[]>(`http://localhost:8080/HellowWorldController/getAllToDos`);
   }
 
   

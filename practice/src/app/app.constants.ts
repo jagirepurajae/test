@@ -1,0 +1,1 @@
+export const samp="http://localhost:8080"

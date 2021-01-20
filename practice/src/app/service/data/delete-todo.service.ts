@@ -10,7 +10,7 @@ export class DeleteTodoService {
 
   deleteToDoById(id:number)
   {
-    return this.http.delete(`http://localhost:8080/HellowWorldController/deleteToDo/${id}`);
+    return this.http.delete(`${URL}/HellowWorldController/deleteToDo/${id}`);
   }
 }
 
