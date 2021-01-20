@@ -27,6 +27,7 @@ export class TodoComponent implements OnInit {
   // ];
   public message: string = '';
   public todos: any;
+  public todo:any;
   constructor(public getalltoservce: GetAllTodoService, private deleteTodoservice: DeleteTodoService, private router: Router) { }
 
   ngOnInit() {
@@ -47,5 +48,9 @@ export class TodoComponent implements OnInit {
 
   editToDo(id: number) {
     this.router.navigate(['todos', id]);
+  }
+  addToDo()
+  {
+   this.router.navigate(['todos',-1])
   }
 }

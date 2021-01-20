@@ -18,8 +18,13 @@ export class GetAllTodoService {
     return this.http.get<ToDo>(`http://localhost:8080/HellowWorldController/getToDoById/${id}`);
   }
 
-  saveToDo(todo:ToDo)
+  updateToDo(todo:ToDo)
   {
     return this.http.put(`http://localhost:8080/HellowWorldController/updateToDo`,todo);
+  }
+
+  addToDo(todo:ToDo)
+  {
+    return this.http.post(`http://localhost:8080/HellowWorldController/addToDo`,todo);
   }
 }

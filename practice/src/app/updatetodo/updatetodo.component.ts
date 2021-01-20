@@ -11,18 +11,25 @@ import { ToDo } from '../todo/todo.component';
 })
 export class UpdatetodoComponent implements OnInit {
   id: number = 0;
-  public todo: ToDo = new ToDo(8, '', true, new Date());
+
   constructor(private router: Router, private getAllTodoService: GetAllTodoService, private activeRoute: ActivatedRoute) {
 
   }
-
+  public todo:ToDo=new ToDo(this.id,'',false,new Date());;
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params['id'];
+    if(this.id!=-1){
+    this.todo=new ToDo(this.id,'',false,new Date());
     this.getAllTodoService.getToDoById(this.id).subscribe(data => this.todo = data);
+    }
   }
   saveTODo() {
-    this.getAllTodoService.saveToDo(this.todo).subscribe(data => console.log(data))
-    
-    this.router.navigate(['todos']);
+    if(this.id===-1){
+      this.getAllTodoService.addToDo(this.todo).subscribe(data=>{console.log('added successfully')
+    this.router.navigate(['todos'])});
+    }else{
+      this.getAllTodoService.updateToDo(this.todo).subscribe(data => this.router.navigate(['todos']));
+    }
+  
   }
 }
