@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToDo } from 'src/app/todo/todo.component';
 
@@ -10,10 +10,20 @@ export class GetAllTodoService {
   constructor(private http: HttpClient) { }
 
   getAllToDo() {
-    return this.http.get<ToDo[]>(`http://localhost:8080/HellowWorldController/getAllToDos`);
+
+    let basicHeader=this.createBasicHttpAuthentucation();
+    let headers=new HttpHeaders({Authorization:basicHeader})
+    return this.http.get<ToDo[]>(`http://localhost:8080/HellowWorldController/getAllToDos`,{headers});
   }
 
-  
+  createBasicHttpAuthentucation()
+  {
+    let username='rajae'
+    let password='rajae'
+    let basicHeader='Basic '+window.btoa(username+':'+password);
+    console.log(basicHeader)
+    return basicHeader;
+  }
   getToDoById(id: number) {
     return this.http.get<ToDo>(`http://localhost:8080/HellowWorldController/getToDoById/${id}`);
   }
